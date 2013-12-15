@@ -70,6 +70,7 @@ class APIView(MethodView):
 class ThingsAPIView(APIView):
     """
     curl -i -H "Content-Type: application/json" -X POST -d '{"name":"pizza","key":"mykey" }' http://localhost:5000/api/v1/things
+    curl -i -H "Content-Type: application/json" -X GET -d '{"key":"mykey" }' http://localhost:5000/api/v1/things
     """
 
     ##GET and POST both
