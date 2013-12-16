@@ -46,8 +46,8 @@ class APIView(MethodView):
     def validate_json_request(self, request):
         if not request.json:
             return False
-        if not "name" in request.json:
-            return False
+        #if not "name" in request.json:
+        #    return False
         if not "key" in request.json:
             return False
         return self.check_api_key(request.json["key"])
@@ -86,7 +86,7 @@ class ThingsAPIView(APIView):
 
 
     ##GET only
-    def get_items(self): return [t.name for t in models.Things.query.all()]
+    def get_items(self): return [t.id for t in models.Things.query.all()]
 
 
 
