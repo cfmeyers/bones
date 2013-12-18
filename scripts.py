@@ -8,20 +8,26 @@ class AddUser(Command):
         return [
             Option('-n', '--name', dest='name'),
             Option('-p', '--password', dest='password'),
-            Option('-r', '--role', dest='0 for user, 1 for admin', default=0)
+            Option('-r', '--role', dest='role', default=0)
         ]
 
     def run(self, name, password, role):
-        if not name or not password:
-            print "missing name or password"
+        if not name:
+            print "missing name"
+            return
+        if not password:
+            print "missing password"
             return
         user = User(name, password)
+        print "username: ", name
         if role:
             role = int(role)
             if role not in [0, 1]:
                 print "role must be 0 or 1"
                 return
             user.role = role
+            print "role: ", role
+        if password: print "password: ", password
 
         db.session.add(user)
         db.session.commit()
