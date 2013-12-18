@@ -26,6 +26,10 @@ class IndexView(views.View):
     methods = ["GET"]
 
     def dispatch_request(self):
+
+        if not current_user.is_authenticated():
+            return redirect('/login')
+
         return render_template("index.html")
 
 class LoginView(views.View):
@@ -76,6 +80,10 @@ class ListView(views.View):
         return render_template(self.get_template_name(), **context)
 
     def dispatch_request(self):
+
+        if not current_user.is_authenticated():
+            return redirect('/login')
+
 
         context = {'objects':self.get_objects(),'title':self.get_title()}
 
